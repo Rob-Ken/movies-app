@@ -3,8 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Movies App</title>
+
+    <!--css-->
+    <link rel="stylesheet" href="css/movies.css">
+
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 </head>
 <body>
+<div class="page-container">
+    <div class="container">
+        <div class="row">
+            <div class="container displayMovie" data-movies>
+                <table id="movie-list">
+                </table>
+            </div>
+
+            <div class="container addNewMovies">
+                <form>
+                    <label for="title">title:</label><br>
+                    <input type="text" id="title" name="fname"><br>
+                    <label for="year">year:</label><br>
+                    <input type="text" id="year" name="lname"><br>
+                    <label for="director">director:</label><br>
+                    <input type="text" id="director" name="fname"><br>
+                    <label for="rating">rating:</label><br>
+                    <input type="text" id="rating" name="fname"><br>
+                    <label for="runtime">runtime:</label><br>
+                    <input type="text" id="runtime" name="fname"><br>
+                    <label for="genre">genre:</label><br>
+                    <input type="text" id="genre" name="fname"><br>
+                    <label for="actors">actors:</label><br>
+                    <input type="text" id="actors" name="fname"><br>
+                    <button id="addMovies-btn">Add Movies</button>
+                </form>
+            </div>
+
+
+
+
+<!--button to delete-->
+
+<!--button to update-->
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<!--JQuery-->
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+<!--Bootstrap-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 <!-- The core Firebase JS SDK and Databse library -->
 <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
