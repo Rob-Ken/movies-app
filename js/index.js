@@ -7,38 +7,21 @@ let runtimeInput = document.querySelector('#runtime')
 let genreInput = document.querySelector('#genre')
 let actorsInput = document.querySelector('#actors')
 let addMovies = document.querySelector('#addMovies-btn')
-// let movieCard = document.querySelector('#movie-list')
-// let updateMovieBtn = document.querySelector('#updateMovie')
-// let deleteMovieBtn = document.querySelector('#deleteMovie')
+
+
 
 addMovies.addEventListener("click", addMovie);
 
 (async () => {
-    // This is the entry point for your application. Write all of your code here.
-    // Before you can use the database, you need to configure the "db" object 
-    // with your team name in the "js/movies-api.js" file.
-    await displayMovies();
 
-    // let movies = await getMovies();
-    // displayMovies(movies)
+    await displayMovies();
 
     $('#deleteMovie-btn').click(async function  () {
         let test = await getMovies();
 
-        // console.log(getMovies)
-        // for (let i=0; i<getMovies.length; i++){
-        //     if (getMovies[i].title === titleInput.val()){
-        //         console.log(getMovies[i].id)
-        //         let movie ={}
-        //         movie.id = getMovies[i].id
-        //
-        //         deleteMovie(movie);
-        //     }
-        // }
     });
 
     async function displayMovies() {
-        console.log('fired')
         let movies = await getMovies();
         let html = ''
         for (let i = 0; i < movies.length; i += 1) {
@@ -54,6 +37,23 @@ addMovies.addEventListener("click", addMovie);
             <button id="updateMovie-btn" data-MovieId="${movies[i].id}">Update Movie</button>
             <button id="deleteMovie-btn" data-MovieId="${movies[i].id}">Delete Movie</button>
         </div>
+        <form id="updateForm" class="slideOut">
+            <label for="titleUpdate">title:</label><br>
+            <input type="text" id="titleUpdate" name="fname" value=${movies[i].title}><br>
+            <label for="yearUpdate">year:</label><br>
+            <input type="text" id="yearUpdate" name="lname" value=${movies[i].year}><br>
+            <label for="directorUpdate">director:</label><br>
+            <input type="text" id="directorUpdate" name="fname" value=${movies[i].director}><br>
+            <label for="ratingUpdate">rating:</label><br>
+            <input type="text" id="ratingUpdate" name="fname" value=${movies[i].rating}><br>
+            <label for="runtimeUpdate">runtime:</label><br>
+            <input type="text" id="runtimeUpdate" name="fname" value=${movies[i].runtime}><br>
+            <label for="genreUpdate">genre:</label><br>
+            <input type="text" id="genreUpdate" name="fname" value=${movies[i].genre}><br>
+            <label for="actorsUpdate">actors:</label><br>
+            <input type="text" id="actorsUpdate" name="fname" value=${movies[i].actors}><br>
+            <button id="updateMovie-btn2" data-MovieId="${movies[i].id}">Update Movie</button>
+        </form>
         `;
         }
         $('#movie-list').html(html);
@@ -69,6 +69,35 @@ addMovies.addEventListener("click", addMovie);
 
     })
 
+    $(`#movie-list`).on('click', '#updateMovie-btn2', async function(e) {
+        e.preventDefault()
+        const obj = {
+            id: $(this).attr('data-MovieId')
+        }
+        let titleUpdate = document.querySelector('#titleUpdate')
+        let yearUpdate = document.querySelector('#yearUpdate')
+        let directorUpdate = document.querySelector('#directorUpdate')
+        let ratingUpdate = document.querySelector('#ratingUpdate')
+        let runtimeUpdate = document.querySelector('#runtimeUpdate')
+        let genreUpdate = document.querySelector('#genreUpdate')
+        let actorsUpdate = document.querySelector('#actorsUpdate')
 
+        const updateData = {
+            title: titleUpdate.value,
+            year: yearUpdate.value,
+            director: directorUpdate.value,
+            rating: ratingUpdate.value,
+            runtime: runtimeUpdate.value,
+            genre: genreUpdate.value,
+            actors: actorsUpdate.value
+        }
+
+        console.log(updateData)
+
+        // updateMovie(obj).then( function(){
+        //     displayMovies()
+        // })
+
+    })
 
 })();
