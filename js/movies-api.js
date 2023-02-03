@@ -47,6 +47,7 @@ function displayMovies(data) {
     for (let i = 0; i < data.length; i += 1) {
 
         html += `
+        <div class="column movies">
             <p>title: ${data[i].title}</p>
             <p>year: ${data[i].year}</p>
             <p>director: ${data[i].director}</p>
@@ -54,7 +55,11 @@ function displayMovies(data) {
             <p>runtime: ${data[i].runtime}</p>
             <p>genre: ${data[i].genre}</p>
             <p>actors: ${data[i].actors}</p>
-        `;
+            
+        </div>
+        <button id="updateMovie" data-movidId=${data.id}>Update Movie</button>
+        <button id="deleteMovie" data-movidId=${data.id}>Delete Movie</button>
+`;
     }
     $('#movie-list').append(html);
 }
@@ -100,6 +105,16 @@ let runtimeInput = document.querySelector('#runtime')
 let genreInput = document.querySelector('#genre')
 let actorsInput = document.querySelector('#actors')
 let addMovies = document.querySelector('#addMovies-btn')
+let movieCard = document.querySelector('#movie-list')
+let updateMovieBtn = document.querySelector('#updateMovie')
+let deleteMovieBtn = document.querySelector('#deleteMovie')
+movieCard.addEventListener('click', function (e) {
+    // alert('Got it')
+    if (e.target.classList.contains('movies')) {
+        alert('This is the update button')
+    }
+})
+// deleteMovieBtn.addEventListener('click', )
 addMovies.addEventListener("click", addMovie);
 console.log(addMovies);
 

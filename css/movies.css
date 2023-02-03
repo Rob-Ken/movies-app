@@ -1,5 +1,16 @@
-[data-movies]{
+.row {
     display: flex;
     flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.movies {
     border: 1px solid black;
+    margin: 15px;
+    width: 50%;
+    min-width: 500px;
 }
