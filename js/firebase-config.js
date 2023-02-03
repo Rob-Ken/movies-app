@@ -111,7 +111,7 @@ class FirebaseDatabase {
             case 'DELETE':
                 id = url.split('/')[2];
                 await this.db.collection(this.collectionName).doc(id).delete();
-                response = {};
+                response = {success: "success!"};
                 break;
             default:
                 throw new Error(`Unsupported method: ${options.method}`);
