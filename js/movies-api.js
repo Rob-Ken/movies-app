@@ -60,7 +60,17 @@ function displayMovies(data) {
 }
 
 // And here is a function that will add a new movie:
-const addMovie = async (movie) => {
+const addMovie = async (e) => {
+    e.preventDefault();
+    let movieObj = {
+        title: titleInput.value,
+        year: yearInput.value,
+        director: directorInput.value,
+        rating: ratingInput.value,
+        runtime: runtimeInput.value,
+        genre: genreInput.value,
+        actors: actorsInput.value
+    }
     // "movie" is an object that contains the movie data
     // Example: {title: "The Matrix", year: 1999, rating: 5}
     // You do NOT need to add an id to the movie object.
@@ -72,25 +82,15 @@ const addMovie = async (movie) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(movie),
+        body: JSON.stringify(movieObj),
     };
     let response = await db.fetch(url, options);
     return await response.json();
 }
 
-function addNewMovies()
-{
-    title: title.value,
-    year: year.value,
-    director: director.value,
-    rating: rating.value,
-    runtime: runtime.value,
-    genre: genre.value,
-    actors: actors.value,
-}
-// Call the function
-addNewMovies()
 
+// Call the function
+// addNewMovies()
 
 let titleInput = document.querySelector('#title')
 let yearInput = document.querySelector('#year')
@@ -100,15 +100,11 @@ let runtimeInput = document.querySelector('#runtime')
 let genreInput = document.querySelector('#genre')
 let actorsInput = document.querySelector('#actors')
 let addMovies = document.querySelector('#addMovies-btn')
-addMovies.addEventListener("click", addNewMovies);
-
-
+addMovies.addEventListener("click", addMovie);
+console.log(addMovies);
 
 // Here is where you will create your own functions to further interact with the database.
 // HAPPY CODING!!!
-
-
-
 
 /************* example of a function that gets all movies from the database *********************/
 // const getMovies = async () => {
