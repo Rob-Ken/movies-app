@@ -1,3 +1,4 @@
+(async () => {
 
 let titleInput = document.querySelector('#title')
 let yearInput = document.querySelector('#year')
@@ -8,12 +9,23 @@ let genreInput = document.querySelector('#genre')
 let actorsInput = document.querySelector('#actors')
 let addMovies = document.querySelector('#addMovies-btn')
 
+addMovies.addEventListener("click", createMovie);
 
-
-addMovies.addEventListener("click", addMovie);
-
-(async () => {
-
+function createMovie(e) {
+    e.preventDefault();
+    let movie = {
+        title: titleInput.value,
+        year: yearInput.value,
+        director: directorInput.value,
+        rating: ratingInput.value,
+        runtime: runtimeInput.value,
+        genre: genreInput.value,
+        actors: actorsInput.value
+    }
+    addMovie(movie).then(function() {
+        displayMovies()
+    })
+}
     await displayMovies();
 
     $('#deleteMovie-btn').click(async function  () {
@@ -83,6 +95,7 @@ addMovies.addEventListener("click", addMovie);
         let actorsUpdate = document.querySelector('#actorsUpdate')
 
         const updateData = {
+            id: $(this).attr('data-MovieId'),
             title: titleUpdate.value,
             year: yearUpdate.value,
             director: directorUpdate.value,
@@ -92,11 +105,9 @@ addMovies.addEventListener("click", addMovie);
             actors: actorsUpdate.value
         }
 
-        console.log(updateData)
-
-        // updateMovie(obj).then( function(){
-        //     displayMovies()
-        // })
+        updateMovie(updateData).then( function(){
+            displayMovies()
+        })
 
     })
 
