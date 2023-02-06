@@ -109,6 +109,7 @@ function createMovie(e) {
             displayMovies()
         })
     console.log('test')
+        console.log('test2')
     })
 
 })();
