@@ -108,7 +108,7 @@ function createMovie(e) {
         updateMovie(updateData).then( function(){
             displayMovies()
         })
-
+    console.log('test')
     })
 
 })();
