@@ -53,27 +53,27 @@ function createMovie(e) {
                             <form id="updateForm" data-MovieId="${movies[i].id}">
                             
                                 <label for="titleUpdate">title:</label><br>
-                                <input type="text" id="titleUpdate" name="fname" placeholder="title" value="${movies[i].title}"><br>
+                                <input type="text" data-update-field="titleUpdate" name="fname" placeholder="title" value="${movies[i].title}"><br>
                                 
                                 <label for="yearUpdate">year:</label><br>
-                                <input type="text" id="yearUpdate" name="lname" value="${movies[i].year}"><br>
+                                <input type="text" data-update-field="yearUpdate" name="lname" value="${movies[i].year}"><br>
                                 
                                 <label for="directorUpdate">director:</label><br>
-                                <input type="text" id="directorUpdate" name="fname" value="${movies[i].director}"><br>
+                                <input type="text" data-update-field="directorUpdate" name="fname" value="${movies[i].director}"><br>
                                 
                                 <label for="ratingUpdate">rating:</label><br>
-                                <input type="text" id="ratingUpdate" name="fname" value="${movies[i].rating}"><br>
+                                <input type="text" data-update-field="ratingUpdate" name="fname" value="${movies[i].rating}"><br>
                                 
                                 <label for="runtimeUpdate">runtime:</label><br>
-                                <input type="text" id="runtimeUpdate" name="fname" value="${movies[i].runtime}"><br>
+                                <input type="text" data-update-field="runtimeUpdate" name="fname" value="${movies[i].runtime}"><br>
                                 
                                 <label for="genreUpdate">genre:</label><br>
-                                <input type="text" id="genreUpdate" name="fname" value="${movies[i].genre}"><br>
+                                <input type="text" data-update-field="genreUpdate" name="fname" value="${movies[i].genre}"><br>
                                 
                                 <label for="actorsUpdate">actors:</label><br>
-                                <input type="text" id="actorsUpdate" name="fname" value="${movies[i].actors}"><br>
+                                <input type="text" data-update-field="actorsUpdate" name="fname" value="${movies[i].actors}"><br>
                                 
-                                <button id="updateMovie-btn2" data-MovieId="${movies[i].id}">Update Movie</button>
+                                <button data-update-movie data-MovieId="${movies[i].id}">Update Movie</button>
                             </form>
                         </div>
                     </div>
@@ -96,28 +96,29 @@ function createMovie(e) {
 
     })
 
-    $(`#movie-list`).on('click', '#updateMovie-btn2', async function(e) {
+    $(`#movie-list`).on('click', '[data-update-movie]', async function(e) {
         e.preventDefault()
         const obj = {
             id: $(this).attr('data-MovieId')
         }
-        let titleUpdate = document.querySelector('#titleUpdate')
-        let yearUpdate = document.querySelector('#yearUpdate')
-        let directorUpdate = document.querySelector('#directorUpdate')
-        let ratingUpdate = document.querySelector('#ratingUpdate')
-        let runtimeUpdate = document.querySelector('#runtimeUpdate')
-        let genreUpdate = document.querySelector('#genreUpdate')
-        let actorsUpdate = document.querySelector('#actorsUpdate')
+        let parentElement = $(this).parents('.movies');
+        let titleUpdate = parentElement.find('[data-update-field="titleUpdate"]')
+        let yearUpdate = parentElement.find('[data-update-field="yearUpdate"]')
+        let directorUpdate = parentElement.find('[data-update-field="directorUpdate"]')
+        let ratingUpdate = parentElement.find('[data-update-field="ratingUpdate"]')
+        let runtimeUpdate = parentElement.find('[data-update-field="runtimeUpdate"]')
+        let genreUpdate = parentElement.find('[data-update-field="genreUpdate"]')
+        let actorsUpdate = parentElement.find('[data-update-field="actorsUpdate"]')
 
         const updateData = {
             id: $(this).attr('data-MovieId'),
-            title: titleUpdate.value,
-            year: yearUpdate.value,
-            director: directorUpdate.value,
-            rating: ratingUpdate.value,
-            runtime: runtimeUpdate.value,
-            genre: genreUpdate.value,
-            actors: actorsUpdate.value
+            title: titleUpdate.val(),
+            year: yearUpdate.val(),
+            director: directorUpdate.val(),
+            rating: ratingUpdate.val(),
+            runtime: runtimeUpdate.val(),
+            genre: genreUpdate.val(),
+            actors: actorsUpdate.val()
         }
 
         updateMovie(updateData).then( function(){
