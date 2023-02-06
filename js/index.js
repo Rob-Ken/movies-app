@@ -28,11 +28,6 @@ function createMovie(e) {
 }
     await displayMovies();
 
-    $('#deleteMovie-btn').click(async function  () {
-        let test = await getMovies();
-
-    });
-
     async function displayMovies() {
         let movies = await getMovies();
         let html = ''
@@ -46,39 +41,44 @@ function createMovie(e) {
             <p>runtime: ${movies[i].runtime}</p>
             <p>genre: ${movies[i].genre}</p>
             <p>actors: ${movies[i].actors}</p>
-            <button id="deleteMovie-btn" data-MovieId="${movies[i].id}">Delete Movie</button>
-        </div>
-        
-        <div>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-MovieID="${movies[i].id}">Update Movie ${movies[i].title}</button>
-
-            <div class="offcanvas offcanvas-end" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-              
-              <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">${movies[i].title}</h5>
-                <button class="btn-close" aria-label="Close" data-MovieID="${movies[i].id}"></button>
-              </div>
-              
-              <div class="offcanvas-body">
-                <form id="updateForm">
-                    <label for="titleUpdate">title:</label><br>
-                    <input type="text" id="titleUpdate" name="fname" value=${movies[i].title}><br>
-                    <label for="yearUpdate">year:</label><br>
-                    <input type="text" id="yearUpdate" name="lname" value=${movies[i].year}><br>
-                    <label for="directorUpdate">director:</label><br>
-                    <input type="text" id="directorUpdate" name="fname" value=${movies[i].director}><br>
-                    <label for="ratingUpdate">rating:</label><br>
-                    <input type="text" id="ratingUpdate" name="fname" value=${movies[i].rating}><br>
-                    <label for="runtimeUpdate">runtime:</label><br>
-                    <input type="text" id="runtimeUpdate" name="fname" value=${movies[i].runtime}><br>
-                    <label for="genreUpdate">genre:</label><br>
-                    <input type="text" id="genreUpdate" name="fname" value=${movies[i].genre}><br>
-                    <label for="actorsUpdate">actors:</label><br>
-                    <input type="text" id="actorsUpdate" name="fname" value=${movies[i].actors}><br>
-                    <button id="updateMovie-btn2" data-MovieId="${movies[i].id}">Update Movie</button>
-                </form>
-              </div>   
-            </div> 
+           
+            <p>
+               <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample${i}" role="button" aria-expanded="false" aria-controls="multiCollapseExample">Update Movie</a>
+               <button class="btn btn-primary" id="deleteMovie-btn" data-MovieId="${movies[i].id}">Delete Movie</button>
+            </p>
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample${i}">
+                        <div class="card card-body" >
+                            <form id="updateForm" data-MovieId="${movies[i].id}">
+                            
+                                <label for="titleUpdate">title:</label><br>
+                                <input type="text" id="titleUpdate" name="fname" placeholder="title" value="${movies[i].title}"><br>
+                                
+                                <label for="yearUpdate">year:</label><br>
+                                <input type="text" id="yearUpdate" name="lname" value="${movies[i].year}"><br>
+                                
+                                <label for="directorUpdate">director:</label><br>
+                                <input type="text" id="directorUpdate" name="fname" value="${movies[i].director}"><br>
+                                
+                                <label for="ratingUpdate">rating:</label><br>
+                                <input type="text" id="ratingUpdate" name="fname" value="${movies[i].rating}"><br>
+                                
+                                <label for="runtimeUpdate">runtime:</label><br>
+                                <input type="text" id="runtimeUpdate" name="fname" value="${movies[i].runtime}"><br>
+                                
+                                <label for="genreUpdate">genre:</label><br>
+                                <input type="text" id="genreUpdate" name="fname" value="${movies[i].genre}"><br>
+                                
+                                <label for="actorsUpdate">actors:</label><br>
+                                <input type="text" id="actorsUpdate" name="fname" value="${movies[i].actors}"><br>
+                                
+                                <button id="updateMovie-btn2" data-MovieId="${movies[i].id}">Update Movie</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>     
+            </div>
         </div>
         `;
 
@@ -123,9 +123,6 @@ function createMovie(e) {
         updateMovie(updateData).then( function(){
             displayMovies()
         })
-
-    console.log('test')
-        console.log('test2')
 
     })
 
