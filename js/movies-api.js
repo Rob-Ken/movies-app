@@ -62,24 +62,14 @@ const updateMovie = async (movie) => {
 
 /************* add movie to the database *********************/
 
-const addMovie = async (e) => {
-    e.preventDefault();
-    let movieObj = {
-        title: titleInput.value,
-        year: yearInput.value,
-        director: directorInput.value,
-        rating: ratingInput.value,
-        runtime: runtimeInput.value,
-        genre: genreInput.value,
-        actors: actorsInput.value
-    }
+const addMovie = async (movie) => {
     const url = '/movies';
     const options = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(movieObj),
+        body: JSON.stringify(movie),
     };
     let response = await db.fetch(url, options);
     return await response.json();
