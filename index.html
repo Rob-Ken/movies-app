@@ -14,12 +14,12 @@
 <body>
 <div class="page-container">
     <div class="container">
+
+<!--Displayed Movie list-->
         <div id="movieBox" class="row">
-            <div class="movie-list"  id="movie-list">
-
-            </div>
+            <div class="movie-list"  id="movie-list"></div>
         </div>
-
+<!--Add Movie Function-->
         <div>
             <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapse" role="button" aria-expanded="false" aria-controls="multiCollapseExample">Add Movie</a>
         </div>
@@ -28,29 +28,30 @@
                 <div class="collapse multi-collapse" id="multiCollapse">
                     <div class="card card-body">
                         <div class="container addNewMovies">
-                            <form>
+                            <form id="newMovieForm">
                                 <label for="title">title:</label><br>
-                                <input type="text" id="title" name="fname"><br>
+                                <input type="text" id="title"><br>
 
                                 <label for="year">year:</label><br>
-                                <input type="text" id="year" name="lname"><br>
+                                <input type="text" id="year"><br>
 
                                 <label for="director">director:</label><br>
-                                <input type="text" id="director" name="fname"><br>
+                                <input type="text" id="director"><br>
 
                                 <label for="rating">rating:</label><br>
-                                <input type="text" id="rating" name="fname"><br>
+                                <input type="text" id="rating"><br>
 
                                 <label for="runtime">runtime:</label><br>
-                                <input type="text" id="runtime" name="fname"><br>
+                                <input type="text" id="runtime"><br>
 
                                 <label for="genre">genre:</label><br>
-                                <input type="text" id="genre" name="fname"><br>
+                                <input type="text" id="genre"><br>
 
                                 <label for="actors">actors:</label><br>
-                                <input type="text" id="actors" name="fname"><br>
+                                <input type="text" id="actors"><br>
 
                                 <button id="addMovies-btn">Add Movies</button>
+                                <button id="clearMovies-btn">Clear</button>
                             </form>
                         </div>
                     </div>

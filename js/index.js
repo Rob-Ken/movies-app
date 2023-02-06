@@ -8,8 +8,27 @@ let runtimeInput = document.querySelector('#runtime')
 let genreInput = document.querySelector('#genre')
 let actorsInput = document.querySelector('#actors')
 let addMovies = document.querySelector('#addMovies-btn')
+let clearMovies = document.querySelector('#clearMovies-btn')
 
 addMovies.addEventListener("click", createMovie);
+
+clearMovies.addEventListener('click', function(e){
+    e.preventDefault()
+    document.querySelector('#newMovieForm').reset()
+})
+
+// async function sortMovies(){
+//     let movies = await getMovies();
+//     movies.sort((a,b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
+// }
+//
+//     // const textA = a.title.toLowerCase();
+//     // const textB = b.title.toLowerCase();
+//     // console.log(textA)
+//     // // console.log(textB)
+//     // return (textA < textB) ? -1 : (textA > textB) ? 1: 0;
+// await sortMovies()
+
 
 function createMovie(e) {
     e.preventDefault();
@@ -53,7 +72,7 @@ function createMovie(e) {
                             <form id="updateForm" data-MovieId="${movies[i].id}">
                             
                                 <label for="titleUpdate">title:</label><br>
-                                <input type="text" data-update-field="titleUpdate" name="fname" placeholder="title" value="${movies[i].title}"><br>
+                                <input type="text" data-update-field="titleUpdate" name="fname"  value="${movies[i].title}"><br>
                                 
                                 <label for="yearUpdate">year:</label><br>
                                 <input type="text" data-update-field="yearUpdate" name="lname" value="${movies[i].year}"><br>
@@ -85,6 +104,8 @@ function createMovie(e) {
         }
         $('#movie-list').html(html);
     }
+
+//deletes the current movie selected
     $(`#movie-list`).on('click', '#deleteMovie-btn', async function() {
        const obj = {
            id: $(this).attr('data-MovieId')
@@ -96,6 +117,7 @@ function createMovie(e) {
 
     })
 
+//updates the current movie selected
     $(`#movie-list`).on('click', '[data-update-movie]', async function(e) {
         e.preventDefault()
         const obj = {
