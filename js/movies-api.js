@@ -75,6 +75,9 @@ const addMovie = async (movie) => {
     return await response.json();
 }
 
+/************* Movie Poster API *******************************/
+
+
 
 /************* example of a function that gets a specific movie in the database *********************/
 
