@@ -11,8 +11,6 @@ let genreInput = document.querySelector('#genre');
 let actorsInput = document.querySelector('#actors');
 let addMovies = document.querySelector('#addMovies-btn');
 let clearMovies = document.querySelector('#clearMovies-btn');
-let sortBy = document.querySelector('#sortInput');
-let sortButton = document.querySelector('#sortBtn');
 
 /***************** Event Listens *****************/
 
@@ -82,7 +80,7 @@ async function displayMovies() {
                     <input type="text" data-update-field="actorsUpdate" value="${movies[i].actors}"><br>
                     
                     <!------------------ Update Movies Button ------------------>
-                    <button data-update-movie data-MovieId="${movies[i].id}">Update Movie</button>
+                    <button data-update-movie data-MovieId="${movies[i].id}">Submit</button>
                 </form>
             </div>
         </div>
@@ -133,41 +131,5 @@ $(`#movie-list`).on('click', '[data-update-movie]', async function(e) {
     })
 
 })
-
-/***************** Sort Function *****************/
-
-async function sortByTitle(){
-    let movies = await getMovies();
-    movies.sort((a , b) => {
-        if (a.title < b.title) {
-            return -1;
-        } else if (a.title > b.title) {
-            return 1;
-        } else {
-            return 0;
-        }
-    });
-    return movies;
-}
-
-let sortedByTitle = await sortByTitle();
-console.log(sortedByTitle);
-
-async function sortByYear(){
-    let movies = await getMovies();
-    movies.sort((a , b) => {
-        if (a.year < b.year) {
-            return -1;
-        } else if (a.year > b.year) {
-            return 1;
-        } else {
-            return 0;
-        }
-    });
-    return movies;
-}
-
-let sortedByYear = await sortByYear();
-console.log(sortedByYear);
 
 })();
