@@ -1,3 +1,17 @@
+.page-container {
+    background-image: url("../images/ticket-2974645_1280.jpeg");
+    background-size: 100%;
+    width: 100%;
+}
+
+header {
+    display: inline-flex;
+    font-size: xxx-large;
+    width: 100%;
+    justify-content: center;
+    color: white;
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -8,10 +22,31 @@
     flex-direction: column;
 }
 
+/**** Movie Cards ****/
 .movies, #updateForm {
+    border-radius: 10px;
+    background-color: white;
     padding: 15px;
-    border: 1px solid black;
-    margin: 15px;
+    border: 3px solid black;
+    margin: 5px;
     width: 50%;
     min-width: 500px;
+    opacity: 90%;
+}
+
+/**** Update Movies ****/
+.card-body {
+    background-color: rgba(255, 255, 255, 0.71);
+    flex: 1 1 auto;
+    width: 0;
+    border: 0 !important;;
+    padding: 0 !important;
+    margin: 0;
+}
+
+/**** Add Movies ****/
+#addMovies {
+    width: 17%;
+    border: 3px solid black;
+    border-radius: 10px;
 }
