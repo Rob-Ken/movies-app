@@ -1,34 +1,57 @@
 (async () => {
 
-let titleInput = document.querySelector('#title')
-let yearInput = document.querySelector('#year')
-let directorInput = document.querySelector('#director')
-let ratingInput = document.querySelector('#rating')
-let runtimeInput = document.querySelector('#runtime')
-let genreInput = document.querySelector('#genre')
-let actorsInput = document.querySelector('#actors')
-let addMovies = document.querySelector('#addMovies-btn')
-let clearMovies = document.querySelector('#clearMovies-btn')
+let titleInput = document.querySelector('#title');
+let yearInput = document.querySelector('#year');
+let directorInput = document.querySelector('#director');
+let ratingInput = document.querySelector('#rating');
+let runtimeInput = document.querySelector('#runtime');
+let genreInput = document.querySelector('#genre');
+let actorsInput = document.querySelector('#actors');
+let addMovies = document.querySelector('#addMovies-btn');
+let clearMovies = document.querySelector('#clearMovies-btn');
+let sortBy = document.querySelector('#sortInput');
+let sortButton = document.querySelector('#sortBtn');
 
 addMovies.addEventListener("click", createMovie);
 
-clearMovies.addEventListener('click', function(e){
-    e.preventDefault()
-    document.querySelector('#newMovieForm').reset()
-})
+    clearMovies.addEventListener('click', function(e){
+        e.preventDefault()
+        document.querySelector('#newMovieForm').reset()
+    })
 
-// async function sortMovies(){
-//     let movies = await getMovies();
-//     movies.sort((a,b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
-// }
-//
-//     // const textA = a.title.toLowerCase();
-//     // const textB = b.title.toLowerCase();
-//     // console.log(textA)
-//     // // console.log(textB)
-//     // return (textA < textB) ? -1 : (textA > textB) ? 1: 0;
-// await sortMovies()
+async function sortByTitle(){
+    let movies = await getMovies();
+    movies.sort((a , b) => {
+        if (a.title < b.title) {
+            return -1;
+        } else if (a.title > b.title) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    return movies;
+}
 
+let sortedByTitle = await sortByTitle();
+    console.log(sortedByTitle);
+
+    async function sortByYear(){
+        let movies = await getMovies();
+        movies.sort((a , b) => {
+            if (a.year < b.year) {
+                return -1;
+            } else if (a.year > b.year) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        return movies;
+    }
+
+    let sortedByYear = await sortByYear();
+    console.log(sortedByYear);
 
 function createMovie(e) {
     e.preventDefault();
@@ -52,15 +75,16 @@ function createMovie(e) {
         let html = ''
         for (let i = 0; i < movies.length; i += 1) {
             html += `
+
         <div class="column movies">
-            <p>title: ${movies[i].title}</p>
-            <p>year: ${movies[i].year}</p>
-            <p>director: ${movies[i].director}</p>
-            <p>rating: ${movies[i].rating}</p>
-            <p>runtime: ${movies[i].runtime}</p>
-            <p>genre: ${movies[i].genre}</p>
-            <p>actors: ${movies[i].actors}</p>
-           
+                <p>title: ${movies[i].title}</p>
+                <p>year: ${movies[i].year}</p>
+                <p>director: ${movies[i].director}</p>
+                <p>rating: ${movies[i].rating}</p>
+                <p>runtime: ${movies[i].runtime}</p>
+                <p>genre: ${movies[i].genre}</p>
+                <p>actors: ${movies[i].actors}</p>
+        </div>
             <p>
                <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample${i}" role="button" aria-expanded="false" aria-controls="multiCollapseExample">Update Movie</a>
                <button class="btn btn-primary" id="deleteMovie-btn" data-MovieId="${movies[i].id}">Delete Movie</button>
