@@ -7,7 +7,7 @@ let db = new FirebaseDatabase({
     team: "teamE"
 });
 
-/************* movie database *********************/
+/***************** movie database *****************/
 
 const getMovies =  async () => {
     const url = '/movies';
@@ -21,7 +21,7 @@ const getMovies =  async () => {
     return await response.json();
 }
 
-/************* delete a movie from the database *********************/
+/***************** delete a movie from the database *****************/
 
 const deleteMovie = async (movie) => {
     try {
@@ -40,7 +40,7 @@ const deleteMovie = async (movie) => {
     }
 }
 
-/************* updates a movie from the database *********************/
+/***************** updates a movie from the database *****************/
 
 const updateMovie = async (movie) => {
     try {
@@ -59,8 +59,7 @@ const updateMovie = async (movie) => {
     }
 }
 
-
-/************* add movie to the database *********************/
+/***************** add movie to the database *****************/
 
 const addMovie = async (movie) => {
     const url = '/movies';
@@ -74,46 +73,3 @@ const addMovie = async (movie) => {
     let response = await db.fetch(url, options);
     return await response.json();
 }
-
-/************* Movie Poster API *******************************/
-
-
-
-/************* example of a function that gets a specific movie in the database *********************/
-
-// const getMovie = async (movie) => {
-//     try {
-//         const url = `/movies/${movie.id}`;
-//         const options = {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             }
-//         };
-//         let response = await db.fetch(url, options);
-//         return await response.json();
-//     } catch (e) {
-//         console.error(e);
-//     }
-// }
-
-
-
-/************* example of a function that adds a movie in the database *********************/
-
-// const addMovie = async (movie) => {
-//     try {
-//         const url = '/movies';
-//         const options = {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(movie),
-//         };
-//         let response = await db.fetch(url, options);
-//         return await response.json();
-//     } catch (e) {
-//         console.error(e);
-//     }
-// }
