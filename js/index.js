@@ -1,4 +1,5 @@
 (async () => {
+'use strict'
 
 /***************** DOM selectors *****************/
 
