@@ -107,7 +107,8 @@ $(`#movie-list`).on('click', '[data-update-movie]', async function(e) {
     const obj = {
         id: $(this).attr('data-MovieId')
     }
-    let parentElement = $(this).parents('.movies');
+
+    let parentElement = await $(this).parent('#updateForm');
     let titleUpdate = parentElement.find('[data-update-field="titleUpdate"]')
     let yearUpdate = parentElement.find('[data-update-field="yearUpdate"]')
     let directorUpdate = parentElement.find('[data-update-field="directorUpdate"]')
